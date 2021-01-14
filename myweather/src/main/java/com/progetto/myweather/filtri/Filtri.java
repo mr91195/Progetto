@@ -1,4 +1,4 @@
-package com.progettomyweather.filtri;
+package com.progetto.myweather.filtri;
 
 import java.io.IOException;
 import java.util.Vector;

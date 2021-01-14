@@ -2,13 +2,15 @@ package com.progetto.myweather.controller;
 
 import com.progetto.myweather.service.Actual;
 import com.progetto.myweather.service.CallApi;
-import com.progettomyweather.filtri.Filtri;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Vector;
+
+import com.progetto.myweather.filtri.Filtri;
 import com.progetto.myweather.model.*;
 
 	/*

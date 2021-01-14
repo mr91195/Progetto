@@ -1,7 +1,8 @@
 package com.progetto.myweather.service;
 
+import com.progetto.myweather.filtri.Filtri;
 import com.progetto.myweather.model.*;
-import com.progettomyweather.filtri.Filtri;
+
 import java.util.Vector;
 import org.springframework.stereotype.Component;
 

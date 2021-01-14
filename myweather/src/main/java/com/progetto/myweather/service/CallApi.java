@@ -1,7 +1,7 @@
 package com.progetto.myweather.service;
+import com.progetto.myweather.filtri.FiltraMaxMin;
 import com.progetto.myweather.model.*;
 import com.progetto.myweather.utilities.*;
-import com.progettomyweather.filtri.FiltraMaxMin;
 
 import java.io.BufferedReader;
 import java.io.IOException;
