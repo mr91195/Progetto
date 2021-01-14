@@ -1,26 +1,15 @@
 package com.progetto.myweather.controller;
 
-import com.progetto.myweather.model.Filtri;
-import com.progetto.myweather.model.MeteoCitta;
 import com.progetto.myweather.service.Actual;
-import com.progetto.myweather.service.Actual;
-import com.progetto.myweather.service.RequestApi;
-import com.sun.el.parser.ParseException;
 import com.progetto.myweather.service.CallApi;
-
+import com.progettomyweather.filtri.Filtri;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 import java.util.Vector;
-import java.io.IOException;
+import com.progetto.myweather.model.*;
 
 	/*
 	 * Controller dell'applicazione, sono presenti i vari Path che puo richiamare l'utente
@@ -31,8 +20,7 @@ public class SimpleRestController {
 	
 	@Autowired
 	private Filtri filtri;
-	@Autowired
-	private CallApi call;
+	
 	@Autowired
 	private Actual chiamata ;
 	
@@ -52,7 +40,7 @@ public class SimpleRestController {
 	 */
 
 	@GetMapping("/attuale")
-	public Vector <MeteoCitta> meteoAttuale(@RequestParam(name="box",defaultValue="box1")String box) throws IllegalArgumentException {
+	public Vector <Citta> meteoAttuale(@RequestParam(name="box",defaultValue="box1")String box) throws IllegalArgumentException {
 		
 		return chiamata.meteoActual(box);
 	}
@@ -62,7 +50,7 @@ public class SimpleRestController {
 	 */
 	
 	@GetMapping (value = "/attualeRettangolo")
-	public Vector<MeteoCitta> meteoAttualeBox(@RequestParam(name="lon-left",defaultValue ="12.984160791301779") double lon_left,
+	public Vector<Citta> meteoAttualeBox(@RequestParam(name="lon-left",defaultValue ="12.984160791301779") double lon_left,
 												@RequestParam(name="lat-bottom",defaultValue ="43.32726427106371") double lat_bottom,
 												@RequestParam(name="lon-right",defaultValue ="13.9") double lon_right,
 												@RequestParam(name="lat-top",defaultValue ="43.841951278387214") double lat_top){
@@ -71,19 +59,23 @@ public class SimpleRestController {
 	}
 	
 	
-	
+	@GetMapping (value = "/ArchivioBox")
+	public Vector<Citta> filtroBoxPeriodo(@RequestParam(name="periodo", defaultValue="1")int periodo,
+											@RequestParam(name="box",defaultValue="box1")String box){
+		return filtri.filtraggioBoxPeriodo(box, periodo);
+	}
 	/*
 	 * Path: /statitica, mostra le statistiche della temperatura , mediante il parametro 'Period'
 	 * puo scegliere su che intervallo di tempo calcolare le statistiche
 	 */
 	
-	@GetMapping("/statistica")	
-	public Vector<MeteoCitta> statistiche(@RequestParam(name="box",defaultValue="box1")String box,
-											@RequestParam(name="periodo",defaultValue="1")int periodo) throws IOException, ParseException, org.json.simple.parser.ParseException {
-		Vector<MeteoCitta> statistiche=new Vector<MeteoCitta>();
-		
-		statistiche = filtri.calcoloPeriodo(periodo);
-	
-	return filtri.filtraggio(statistiche, box);
-		}
+//	@GetMapping("/statistica")	
+//	public Vector<MeteoCitta> statistiche(@RequestParam(name="box",defaultValue="box1")String box,
+//											@RequestParam(name="periodo",defaultValue="1")int periodo) throws IOException, ParseException, org.json.simple.parser.ParseException {
+//		Vector<MeteoCitta> statistiche=new Vector<MeteoCitta>();
+//		
+//		statistiche = filtri.calcoloPeriodo(periodo);
+//	
+//	return filtri.filtraggio(statistiche, box);
+//		}
 }
