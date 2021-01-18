@@ -1,5 +1,6 @@
 package com.progetto.myweather.service;
 
+import com.progetto.myweather.exception.CustomException;
 import com.progetto.myweather.filtri.Filtri;
 import com.progetto.myweather.model.*;
 
@@ -21,12 +22,5 @@ public class Actual implements RequestApi{
 		return ca.ApiCallRectangle(lon_left, lat_bottom, lon_right, lat_top);
 	}
 	
-	
-//	public Vector<MeteoCitta> meteoStatistiche(String box, int periodo){
-//		Vector<MeteoCitta> statistiche=new Vector<MeteoCitta>();
-//		
-//			statistiche = filtri.calcoloPeriodo(periodo);
-//		
-//		return filtri.filtraggio(statistiche, box);
-//	}
+	public void chiamataOraria() {}
 }

@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.progetto.myweather.model.Citta;
+import com.progetto.myweather.model.CittaMeteoData;
 import com.progetto.myweather.model.CittaMeteo;
 
 
@@ -42,8 +43,8 @@ public class Utilities {
 				}
 			return nomiCittaBox;
 		}
-	public Vector <Citta> calcoloPeriodo(int periodo) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
+	public Vector <Citta> calcoloPeriodo(int periodo, boolean singolaCitta) throws IOException, ParseException {
+		JSONParser parserjson = new JSONParser();
 		JSONObject obj = new JSONObject();
 		File path = new File ("C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio");
 		String[] files = path.list();
@@ -54,9 +55,9 @@ public class Utilities {
     	   		BufferedReader buf = new BufferedReader (new FileReader(
     	   												path + "\\" + files[i]));
     	   		String elem = buf.readLine();
-    	   		obj = (JSONObject) parser.parse(elem);
+    	   		obj = (JSONObject) parserjson.parse(elem);
     	   		Vector <Citta> tmp =new Vector<Citta> ();
-    	   		tmp = parser(obj);
+    	   		tmp = parser(obj, singolaCitta);
     	   		for ( Citta o : tmp) {
     	   			citta.add(o);
     	   		}
@@ -67,7 +68,8 @@ public class Utilities {
 	
 	public Vector <Citta> filtraggio(int periodo,String box) throws IOException, ParseException{
 		Vector <Citta> cittaPeriodo = null;
-		cittaPeriodo = calcoloPeriodo(periodo);
+		cittaPeriodo = calcoloPeriodo(periodo, false);
+		
 		Vector<String> nomiCitta = new Vector<String> ();
 		switch(box) {
 		case "box1":	nomiCitta=elaboraFile(docuMin);	break;
@@ -88,22 +90,35 @@ public class Utilities {
 	}
 	
 	
-		public Vector<Citta> parser(JSONObject obj) {
+		public Vector<Citta> parser(JSONObject obj, boolean singolaCitta) {
 		
 		Vector<Citta> citta = new Vector<Citta>();
 		JSONArray  a = (JSONArray) obj.get("list");
-		
-		 for(int i = 0 ; i<a.size();i++){ 
+		if (singolaCitta == false) {
+			for(int i = 0 ; i<a.size();i++){ 
 			 JSONObject jo = (JSONObject) a.get(i);
 			 String name = (String) jo.get("name");
 			 
 			 
 			 JSONObject main = (JSONObject) jo.get("main");
-			 //double temp = Double.parseDouble( main.get("temp").toString());
 			 double temp_min = Double.parseDouble(main.get("temp_min").toString());
 			 double temp_max = Double.parseDouble (main.get("temp_max").toString());
 			 citta.add(new CittaMeteo(name, temp_max ,temp_min));
 			 }
+		}
+		else if(singolaCitta == true){
+			for(int i = 0 ; i<a.size();i++){ 
+				 JSONObject jo = (JSONObject) a.get(i);
+			
+				 String name = (String) jo.get("name");
+				 String dataUTC = (String) jo.get("dt").toString();
+				 JSONObject main = (JSONObject) jo.get("main");
+				 double temp_min = Double.parseDouble(main.get("temp_min").toString());
+				 double temp_max = Double.parseDouble (main.get("temp_max").toString());
+				 citta.add(new CittaMeteoData(name,dataUTC,temp_max,temp_min));
+				 }
+		}
+		 
 		 return citta;
 		}
 }

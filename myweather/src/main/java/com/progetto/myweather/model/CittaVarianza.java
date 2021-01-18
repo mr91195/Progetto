@@ -1,7 +1,7 @@
 package com.progetto.myweather.model;
 
 public class CittaVarianza extends Citta{
-	private double varianza;
+	public double varianza;
 
 	public CittaVarianza(String name,double varianza) {
 		super(name);
