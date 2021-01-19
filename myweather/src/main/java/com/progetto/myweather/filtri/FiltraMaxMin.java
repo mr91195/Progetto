@@ -27,7 +27,7 @@ public class FiltraMaxMin {
 			double temp_max= castData.get(0).getTemp_max();
 			String name =castData.get(0).getName();
 			Tmax = new CittaTempMax(name, temp_max);
-			for (int i = 0 ; i< citta.size(); i++) {
+			for (int i = 0 ; i< castData.size(); i++) {
 				if(castData.get(i).getTemp_max() > temp_max) {
 					temp_max = castData.get(i).getTemp_max();
 					name = castData.get(i).getName();
@@ -40,18 +40,20 @@ public class FiltraMaxMin {
 			    	if (o instanceof CittaMeteo) {
 			    		castCitta.add((CittaMeteo) o);
 			    	}
-			}
+			    }
 				double temp_max= castCitta.get(0).getTemp_max();
 				String name =castCitta.get(0).getName();
 				Tmax = new CittaTempMax(name, temp_max);
-				for (int i = 0 ; i< citta.size(); i++) {
+				for (int i = 0 ; i< castCitta.size(); i++) {
 					if(castCitta.get(i).getTemp_max() > temp_max) {
 						temp_max = castCitta.get(i).getTemp_max();
 						name = castCitta.get(i).getName();
-						Tmax = new CittaTempMax (name, temp_max);
+						CittaTempMax tmp = new CittaTempMax(name, temp_max);
+						Tmax = tmp;
 					}
+				}
+				
 		}
-	}		
 	return Tmax;
 }
 	

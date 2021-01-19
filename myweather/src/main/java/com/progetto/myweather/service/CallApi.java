@@ -29,8 +29,13 @@ public class CallApi {
 		public Vector<Citta> ApiCall(String box) throws CustomException {
 			String FileBox ="C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\FileBox.txt";
 			Vector<String> boxStringhe = utilitiesHttp.elaboraStringheBox(FileBox);
-//		    if (box != "box1" || box != "box2" || box != "box3") {
-//		    		throw new CustomException("Box selezionato errato");}
+//			if (box == "box1" || box=="box2" || box=="box3") {
+//				System.out.println("box corretto");
+//			}//
+//			else {
+//				System.out.println("box errato");
+//			}
+//				
 		    String box_selezionato = utilitiesHttp.selezionaBox(boxStringhe,box);
 			String site1 = "https://api.openweathermap.org/data/2.5/box/city?bbox=";
 			String site2 = "&appid=";
