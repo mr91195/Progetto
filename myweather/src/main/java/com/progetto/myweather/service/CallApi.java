@@ -26,16 +26,16 @@ public class CallApi {
 		 * mediante una String box passata dall'utente (box1-box2-box3)
 		 * restituisce il Vector di citta presenti nel box con temperature attuali
 		 */
-		public Vector<Citta> ApiCall(String box) throws CustomException {
+		public Vector<Citta> ApiCall(String box) throws CustomException{
 			String FileBox ="C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\FileBox.txt";
 			Vector<String> boxStringhe = utilitiesHttp.elaboraStringheBox(FileBox);
-//			if (box == "box1" || box=="box2" || box=="box3") {
-//				System.out.println("box corretto");
-//			}//
-//			else {
-//				System.out.println("box errato");
-//			}
-//				
+			switch(box) {
+			case "box1" :  break;
+			case "box2" :  break;
+			case "box3" :  break;
+			default : throw new CustomException("Box selezionato errato");
+			}
+				
 		    String box_selezionato = utilitiesHttp.selezionaBox(boxStringhe,box);
 			String site1 = "https://api.openweathermap.org/data/2.5/box/city?bbox=";
 			String site2 = "&appid=";

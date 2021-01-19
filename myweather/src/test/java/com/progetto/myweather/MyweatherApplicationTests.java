@@ -33,7 +33,7 @@ class MyweatherApplicationTests extends TestCase {
 	@Test
 	public void exceptionTest() {
 	    CustomException exception = assertThrows(CustomException.class, () -> {
-	    	callApi.ApiCall("box1");
+	    	callApi.ApiCall("box5");
 	    });
 
 	    String expectedMessage = "Box selezionato errato";
