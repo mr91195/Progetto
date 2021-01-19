@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.io.IOException;
 import java.util.Vector;
-
 import com.progetto.myweather.exception.CustomException;
-import com.progetto.myweather.filtri.FiltraCitta;
 import com.progetto.myweather.filtri.Filtri;
 import com.progetto.myweather.model.*;
 
@@ -30,11 +27,7 @@ public class SimpleRestController {
 	private Filtri filtri;
 	@Autowired
 	private Actual chiamata ;
-	@Autowired
-	private FiltraCitta filtraCitta;
 	
-//	@Autowired
-//	private CreaStorico creaStorico;
 	
 	
 	/*
@@ -52,7 +45,7 @@ public class SimpleRestController {
 	 */
 
 	@GetMapping("/attuale")
-	public Vector <Citta> meteoAttuale(@RequestParam(name="box",defaultValue="box1")String box) throws IllegalArgumentException{
+	public Vector <Citta> meteoAttuale(@RequestParam(name="box",defaultValue="box1")String box) throws IllegalArgumentException, CustomException{
 		
 		return chiamata.meteoActual(box);
 	}
@@ -67,9 +60,10 @@ public class SimpleRestController {
 	public Vector<Citta> meteoAttualeBox(@RequestParam(name="lon-left",defaultValue ="12.984160791301779") double lon_left,
 												@RequestParam(name="lat-bottom",defaultValue ="43.32726427106371") double lat_bottom,
 												@RequestParam(name="lon-right",defaultValue ="13.9") double lon_right,
-												@RequestParam(name="lat-top",defaultValue ="43.841951278387214") double lat_top){
+												@RequestParam(name="lat-top",defaultValue ="43.841951278387214") double lat_top)
+														throws CustomException{
 		
-		return chiamata.meteoActualBox(lon_left, lat_bottom, lon_right, lat_top);
+		return chiamata.meteoActual(lon_left, lat_bottom, lon_right, lat_top);
 	}
 	
 	/*
@@ -85,15 +79,14 @@ public class SimpleRestController {
 											@RequestParam(name="box",defaultValue="box1")String box) throws ParseException{
 		return filtri.filtraggioBoxPeriodo(box, periodo);
 	}
-//	
-//	@GetMapping (value = "/creaStorico")
-//	public String creaStorico () {
-//		creaStorico.chiamataOraria();
-//		return "Verrà effettuato un salvataggio per ogni ora";
-//	}
+	
+	/*
+	 * Path : /filtraCitta, l'utente passando un body della classe CittaFiltro,
+	 * richiede il numero di giorni degli storici di una singola citta
+	 */
 	
 	@PostMapping (value = "/filtraCitta")
 	public Vector<Citta> filtraCitta (@RequestBody CittaFiltro citta) throws IOException {
-		return filtraCitta.evidenziaStoricoCitta(citta.getGiorni(),citta.getName());
+		return filtri.filtraCitta(citta.getGiorni(),citta.getName());
 	}
 }

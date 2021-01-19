@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class UtilitiesHttp {
-	
+	/*
+	 * restituisce la key per l'API CurrentWeather
+	 */
 	public String getKey () {
 		File file_key = new File ("C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\api-key.txt");
 		String key="";
@@ -23,7 +25,10 @@ public class UtilitiesHttp {
 		
 	return 	key;
 	}
-	
+	/*
+	 * metodo che restituisce un vettore contenente le coordinate relative al box1,box2,box3
+	 * in String FileBox viene passato il percorso del file 'FileBox'
+	 */
 	public Vector <String> elaboraStringheBox(String FileBox) {
 		
 		Vector <String> arrBox = new Vector <String>();
@@ -48,7 +53,10 @@ public class UtilitiesHttp {
 		return arrBox;
 		
 	}
-	
+	/*
+	 *  metodo che confronta il box selezionato dall'utente e restituisce le
+	 *  coordinate del box corrette, da inserire nell'http
+	 */
 	public String selezionaBox(Vector<String> boxStringhe, String box) {
 		String box_selezionato="";
 		switch(box) {

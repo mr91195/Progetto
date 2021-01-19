@@ -17,6 +17,11 @@ public class FiltraCitta {
 	FiltraMaxMin filtraMaxMin = new FiltraMaxMin();
 	Varianza varianza = new Varianza();
 	
+	/*
+	 * 	Metodo che si occupa di restituire un Vector popolato dalla singola citta richiesta dall'utente
+	 * per il numero di giorni di storico richiesti.
+	 * aggiungendo la tempMax , tempMin e la varianza
+	 */
 	public Vector<Citta> evidenziaStoricoCitta( int periodo, String nomeCitta) throws IOException{
 		
 		Vector<Citta> citta = new Vector<Citta>();
@@ -34,8 +39,9 @@ public class FiltraCitta {
 					citta.add(new CittaMeteoData(s));
 				}
 			}
-			
+			//aggiunge un oggetto CittaTempMax ed un oggetto CittaTempMin
 			citta= filtraMaxMin.aggiungiMaxMin(citta, true);
+			//aggiunge un oggetto CittaVarianza 
 			citta = varianza.aggiungiVarianza(citta, true);
 			
 			

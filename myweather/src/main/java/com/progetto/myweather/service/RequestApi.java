@@ -5,11 +5,10 @@ import java.util.Vector;
 
 public interface RequestApi {
 	
-	//public Vector<MeteoCitta> meteoStatistiche(String box, int periodo);
 	
-	public Vector<Citta> meteoActual(String box);
+	public Vector<Citta> meteoActual(String box)throws CustomException;
 	
-	public Vector<Citta> meteoActualBox(double lon_left, double lat_bottom, double lon_right, double lat_top);
+	public Vector<Citta> meteoActual(double lon_left, double lat_bottom, double lon_right, double lat_top)throws CustomException;
 	
-	public void chiamataOraria();
+	
 }

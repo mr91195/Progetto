@@ -21,14 +21,17 @@ public class CallApi {
 		Utilities	utilities = new Utilities ();
 		
 		
-		public Vector<Citta> ApiCall(String box)  {
-			
+		/*
+		 * Metodo chiamato da SimpleRestController
+		 * mediante una String box passata dall'utente (box1-box2-box3)
+		 * restituisce il Vector di citta presenti nel box con temperature attuali
+		 */
+		public Vector<Citta> ApiCall(String box) throws CustomException {
 			String FileBox ="C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\FileBox.txt";
 			Vector<String> boxStringhe = utilitiesHttp.elaboraStringheBox(FileBox);
-//		    if (box != "box1" || box != "box2" || box != "box3") 
-//		    		throw new CustomException("Box selezionato errato");
+//		    if (box != "box1" || box != "box2" || box != "box3") {
+//		    		throw new CustomException("Box selezionato errato");}
 		    String box_selezionato = utilitiesHttp.selezionaBox(boxStringhe,box);
-		    
 			String site1 = "https://api.openweathermap.org/data/2.5/box/city?bbox=";
 			String site2 = "&appid=";
 			JSONParser parser = new JSONParser();
@@ -58,7 +61,10 @@ public class CallApi {
 			
 		}
 
-	
+		/*
+		 * metodo simile che resituisce le citta presenti nel box con le temperature attuali
+		 * il metodo ha come input i parametri del box passati manualmente dall'utente
+		 */
 		public Vector <Citta> ApiCallRectangle (double lon_left, double lat_bottom, double lon_right, double lat_top){
 			String site1 = "https://api.openweathermap.org/data/2.5/box/city?bbox=";
 			String site2 = "&appid=";
@@ -90,11 +96,11 @@ public class CallApi {
 			return citta;
 		}
 		
-	
-		
-		
-		
-		
+		/*
+		 * metodo privato che richiama aggiungiMaxMin di FiltraMaxMin
+		 * aggiunge al vector due oggetti, un oggetto  CittaTempMax
+		 * ed un ogetto CittaTempMin
+		 */
 		
 		private Vector<Citta> evidenziaStatistiche(Vector <Citta> citta) {
 			

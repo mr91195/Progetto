@@ -7,6 +7,7 @@ import com.progetto.myweather.model.CittaMeteoData;
 import com.progetto.myweather.model.CittaVarianza;
 
 public class Varianza {
+	
 	public CittaVarianza calcoloVarianza(Vector<Citta> citta, boolean singolaCitta) {
 		//salvo i valori della temperatura media di ogni citta su un vettore di appoggio
 		Vector<Double> valori = new Vector<Double>();

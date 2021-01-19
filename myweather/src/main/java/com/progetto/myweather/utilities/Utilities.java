@@ -20,6 +20,10 @@ public class Utilities {
 	String docuMid = "C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\cittaBoxMedium.txt";
 	String docuMin = "C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\cittaBoxMin.txt";
 	
+	/*
+	 * 
+	 */
+	
 	public Vector <String> elaboraFile(String doc) {
 			
 	        Vector <String> nomiCittaBox = new Vector <String>();
@@ -43,6 +47,10 @@ public class Utilities {
 				}
 			return nomiCittaBox;
 		}
+		/*
+		 * metodo che in base ad un periodo, popola un Vector con tutte le citta salvate in locale in base
+		 * al periodo che corrisponde al numero di giorni a ritroso da considerare.
+		 */
 	public Vector <Citta> calcoloPeriodo(int periodo, boolean singolaCitta) throws IOException, ParseException {
 		JSONParser parserjson = new JSONParser();
 		JSONObject obj = new JSONObject();
@@ -65,7 +73,10 @@ public class Utilities {
         }
        return citta;
    	}
-	
+	/*
+	 * Metodo che dopo aver ricevuto da 'calcoloPeriodo' tutte le citta corrispondenti ai giorni di storico scelti,
+	 * si occupa di selezionare solamente le citta presenti nel box richiesto.
+	 */
 	public Vector <Citta> filtraggio(int periodo,String box) throws IOException, ParseException{
 		Vector <Citta> cittaPeriodo = null;
 		cittaPeriodo = calcoloPeriodo(periodo, false);
@@ -88,7 +99,15 @@ public class Utilities {
         	 }
         return citta;
 	}
-	
+	/*
+	 * metodo al quale gli viene passato un JSONObject
+	 * il quale si occupa di trasformarlo in un Vector prendendo i parametri utili
+	 * 
+	 * in base al boolean crea oggetti diversi, nel caso di 'false' crea oggetti di tipo CittaMeteo,
+	 * viene richiamato da ApiCall e ApiCallRectangle. nel caso di 'true' crea ogetti di tipo 
+	 * CittaMeteoData.
+	 * Nel caso di 'true' viene richiamato dalla classe FiltraCitta
+	 */
 	
 		public Vector<Citta> parser(JSONObject obj, boolean singolaCitta) {
 		
