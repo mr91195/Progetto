@@ -91,7 +91,7 @@ public class SimpleRestController {
 	
 	@GetMapping (value = "/archivioBox")
 	public Vector<Citta> filtroBoxPeriodo(@RequestParam(name="periodo", defaultValue="1")int periodo,
-											@RequestParam(name="box",defaultValue="box1")String box) throws ParseException{
+											@RequestParam(name="box",defaultValue="box1")String box) throws ParseException, CustomException{
 		return filtri.filtraggioBoxPeriodo(box, periodo);
 	}
 	
@@ -106,7 +106,7 @@ public class SimpleRestController {
 	 */
 	@PostMapping (value = "/filtraCitta")
 	public Vector<Citta> filtraCittaBox (@RequestParam (name="box", defaultValue="box1") String box,
-								@RequestBody CittaFiltro citta) throws ParseException, IOException {
+								@RequestBody CittaFiltro citta) throws ParseException, IOException, CustomException {
 		Vector<Citta> cityBox = filtri.filtraggioBoxPeriodo(box, citta.getGiorni());
 		cityBox.addAll(filtri.filtraCitta(citta.getGiorni(),citta.getName(), cityBox));
 		return cityBox;

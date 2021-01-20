@@ -5,6 +5,8 @@ import java.util.Vector;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
+
+import com.progetto.myweather.exception.CustomException;
 import com.progetto.myweather.model.Citta;
 import com.progetto.myweather.utilities.Utilities;
 import com.progetto.myweather.utilities.Varianza;
@@ -28,7 +30,10 @@ public class Filtri {
 	 * @param periodo: identifica i giorni a ritroso per i file in locale
 	 * @return il vettore popolato dalle citta richieste con calcolo della varianza e tempMax e tempMin
 	 */
-	public Vector<Citta> filtraggioBoxPeriodo (String box, int periodo) throws ParseException{
+	public Vector<Citta> filtraggioBoxPeriodo (String box, int periodo) throws ParseException, CustomException{
+		
+		if (periodo >8) throw new CustomException("Periodo selezionato errato, puo scegliere un massimo di 8 giorni");
+		
 		
 		Vector<Citta> citta = null;
 		try {
