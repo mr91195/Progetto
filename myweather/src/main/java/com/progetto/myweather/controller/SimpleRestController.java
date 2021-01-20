@@ -16,7 +16,7 @@ import com.progetto.myweather.filtri.Filtri;
 import com.progetto.myweather.model.*;
 
 	/*@Author Marco Romanelli
-	 * @Author Cristiano Vagnoni
+	 *@Author Cristiano Vagnoni
 	 * 
 	 * 
 	 * Controller dell'applicazione, sono presenti i vari Path che puo richiamare l'utente
