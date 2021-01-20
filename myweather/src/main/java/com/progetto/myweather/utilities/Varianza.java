@@ -6,8 +6,16 @@ import com.progetto.myweather.model.CittaMeteo;
 import com.progetto.myweather.model.CittaMeteoData;
 import com.progetto.myweather.model.CittaVarianza;
 
+	/*
+	 * classe che si occupa di calcolare la Varianza
+	 */
+
 public class Varianza {
-	
+	/*
+	 * @param citta: contiene le citta sulle quali calcolare la varianza
+	 * @param singolaCitta: serve per gestire il downCast
+	 * @return ogetto della classe CittaVarianza, contenente il valore calcolato
+	 */
 	public CittaVarianza calcoloVarianza(Vector<Citta> citta, boolean singolaCitta) {
 		//salvo i valori della temperatura media di ogni citta su un vettore di appoggio
 		Vector<Double> valori = new Vector<Double>();
@@ -42,7 +50,11 @@ public class Varianza {
 		double varianza = numeratore / valori.size();
 		return new CittaVarianza("Varianza temperatura media", varianza);
 	}
-	
+	/*
+	 * @param citta: le citta sulle quali calolare la varianza
+	 * @param singolaCitta: serve per il metodo calcoloVarianza()
+	 * @return le citta con l'aggiunta della varianza
+	 */
 	public Vector<Citta> aggiungiVarianza(Vector <Citta> citta, boolean singolaCitta){
 		Citta varianza = calcoloVarianza(citta, singolaCitta);
 		citta.add(varianza);

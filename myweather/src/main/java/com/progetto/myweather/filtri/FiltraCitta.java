@@ -22,7 +22,7 @@ public class FiltraCitta {
 	 * per il numero di giorni di storico richiesti.
 	 * aggiungendo la tempMax , tempMin e la varianza
 	 */
-	public Vector<Citta> evidenziaStoricoCitta( int periodo, String nomeCitta) throws IOException{
+	public Vector<Citta> evidenziaStoricoCitta( int periodo, String nomeCitta, Vector<Citta> cityBox) throws IOException{
 		
 		Vector<Citta> citta = new Vector<Citta>();
 		Vector<Citta> cittaFiltrate = new Vector<Citta>();
@@ -40,9 +40,9 @@ public class FiltraCitta {
 				}
 			}
 			//aggiunge un oggetto CittaTempMax ed un oggetto CittaTempMin
-			citta= filtraMaxMin.aggiungiMaxMin(citta, true);
+			cityBox= filtraMaxMin.aggiungiMaxMin(citta, true);
 			//aggiunge un oggetto CittaVarianza 
-			citta = varianza.aggiungiVarianza(citta, true);
+			cityBox = varianza.aggiungiVarianza(citta, true);
 			
 			
 		} catch (IOException e) {
@@ -53,7 +53,7 @@ public class FiltraCitta {
 			e.printStackTrace();
 		}
 		
-		return citta;
+		return cityBox;
 	}
 }
 

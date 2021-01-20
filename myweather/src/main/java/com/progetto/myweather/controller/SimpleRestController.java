@@ -42,6 +42,9 @@ public class SimpleRestController {
 	/*
 	 * Path : /attuale, mostra le temperature attuali, mediante il parametro 'Box' (Box pre impostati)
 	 * l'utente puo scegliere tra i vari box delle città confinanti con Ancona (Box1-Box2-Box3)
+	 * 
+	 * @param box 
+	 * @return meteo attuale presenti nel box scelto
 	 */
 
 	@GetMapping("/attuale")
@@ -54,6 +57,11 @@ public class SimpleRestController {
 	 * Path : /attuale/rettangolo , mostra le temperature attuali
 	 *  dove l'utente puo scegliere manualmente il box da selezionare, mediante i parametri della longitudine-sx,
 	 *  latitutine-inferiore, longitudine-destra e latitudine-superiore.
+	 *  @param lon-lef
+	 *  @param lat-bottom
+	 *  @param lon-right
+	 *  @param lat-top
+	 *  @return meteo attuale presenti nel box scelto
 	 */
 	
 	@GetMapping (value = "/attuale/rettangolo")
@@ -67,10 +75,13 @@ public class SimpleRestController {
 	}
 	
 	/*
-	 *	Path : /archivioBox, l'utente mediante due parametri : 
-	 *															-periodo : rappresenta il numero di giorni da prendere in locale
-	 * 															-box : rappresenta il box contenente le citta da mostrare
-	 * restituisce i dati degli archivi, aggiungendo la varianza della temperatura media
+	 *	Path : /archivioBox, l'utente riceve le temperature con le statistiche sulla citta con temperatura minima,
+	 *	con temperatura max e la varianza sulla temperatura media delle varie citta
+	 *
+	 *@param periodo : indica il numero di giorno a ritroso da considerare
+	 *@param box : tra i vari box che ha l'utente a disposizione puo scegliere il box di citta
+	 *@throws CustomException
+	 *@return storici con statistiche.
 	 */
 	
 	
@@ -81,12 +92,19 @@ public class SimpleRestController {
 	}
 	
 	/*
-	 * Path : /filtraCitta, l'utente passando un body della classe CittaFiltro,
-	 * richiede il numero di giorni degli storici di una singola citta
+	 * Path : /filtraCittaBox, l'utente passando un body della classe CittaFiltro,
+	 * e il box , riceve le citta appartenti al box scelto relative per i giorni richiesti (nel body)
+	 * mostrando in piu gli storici della singola citta scelta e con le relative statistiche.
+	 * 
+	 * @param box : identifica il box con le relative citta
+	 * @param citta : body della classe CittaFiltro ( contiene "name" della citta e "periodo" i giorni da valutare)
+	 * @return le temperature delle citta per i giorni richiesti in piu filtra la singola citta scelta.
 	 */
-	
-	@PostMapping (value = "/filtraCitta")
-	public Vector<Citta> filtraCitta (@RequestBody CittaFiltro citta) throws IOException {
-		return filtri.filtraCitta(citta.getGiorni(),citta.getName());
+	@PostMapping (value = "/filtraCittaBox")
+	public Vector<Citta> prova (@RequestParam (name="box", defaultValue="box1") String box,
+								@RequestBody CittaFiltro citta) throws ParseException, IOException {
+		Vector<Citta> cityBox = filtri.filtraggioBoxPeriodo(box, citta.getGiorni());
+		cityBox.addAll(filtri.filtraCitta(citta.getGiorni(),citta.getName(), cityBox));
+		return cityBox;
 	}
 }

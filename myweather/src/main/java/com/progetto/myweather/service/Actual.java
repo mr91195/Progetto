@@ -1,9 +1,7 @@
 package com.progetto.myweather.service;
 
 import com.progetto.myweather.exception.CustomException;
-import com.progetto.myweather.filtri.Filtri;
 import com.progetto.myweather.model.*;
-
 import java.util.Vector;
 import org.springframework.stereotype.Component;
 
@@ -15,20 +13,28 @@ public class Actual implements RequestApi{
 	
 	/*
 	 * metodo che restituisce le citta presenti nel box scelto dall'utente
-	 * sulla scelta dei tre box disponibili
-	 * richiama ApiCall di CallApi
+	 * sulla scelta dei tre box disponibili (box1, box2, box3)
+	 * @see com.progetto.myweather.service.CallApi
+	 * @param box
+	 * @throws CustomException
+	 * @return meteo attuale delle citta corrispondenti al box selezionato
 	 */
 	public Vector<Citta> meteoActual(String box)throws CustomException{
 		 return ca.ApiCall(box);
 	}
 	
 	
-	@Override
+	
 	
 	/*
 	 * metodo che restituisce le citta presenti nel box scelto dall'utente
-	 * l'utente passa manualmente i quattro parametri del box
-	 * richiama ApiCallRectangle di CallApi
+	 * @override
+	 * @param lon-lef
+	 * @param lat-bottom
+	 * @param lon-right
+	 * @param lat-top
+	 * @return meteo attuale presenti nel box scelto
+	 * 
 	 */
 	
 	public Vector<Citta> meteoActual(double lon_left, double lat_bottom, double lon_right, double lat_top)throws CustomException{

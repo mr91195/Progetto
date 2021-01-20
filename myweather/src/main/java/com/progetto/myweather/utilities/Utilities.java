@@ -50,6 +50,10 @@ public class Utilities {
 		/*
 		 * metodo che in base ad un periodo, popola un Vector con tutte le citta salvate in locale in base
 		 * al periodo che corrisponde al numero di giorni a ritroso da considerare.
+		 * 
+		 * @param periodo: indica il numero di giorni richiesti, dunque i file in locale da lavorare
+		 * @param singolaCitta: viene usata quando richiama parser()
+		 * @return vettore popolato dalle citta dei giorni richiesti.
 		 */
 	public Vector <Citta> calcoloPeriodo(int periodo, boolean singolaCitta) throws IOException, ParseException {
 		JSONParser parserjson = new JSONParser();
@@ -75,7 +79,11 @@ public class Utilities {
    	}
 	/*
 	 * Metodo che dopo aver ricevuto da 'calcoloPeriodo' tutte le citta corrispondenti ai giorni di storico scelti,
-	 * si occupa di selezionare solamente le citta presenti nel box richiesto.
+	 * si occupa di selezionare solamente le citta corrispondenti al box richiesto.
+	 * 
+	 * @param periodo : numero giorni degli storici
+	 * @param box: box scelto dall'utente
+	 * @return vector popolato dalle citta corrispondenti al box dell'utente per il numero di giorni.
 	 */
 	public Vector <Citta> filtraggio(int periodo,String box) throws IOException, ParseException{
 		Vector <Citta> cittaPeriodo = null;
@@ -104,9 +112,12 @@ public class Utilities {
 	 * il quale si occupa di trasformarlo in un Vector prendendo i parametri utili
 	 * 
 	 * in base al boolean crea oggetti diversi, nel caso di 'false' crea oggetti di tipo CittaMeteo,
-	 * viene richiamato da ApiCall e ApiCallRectangle. nel caso di 'true' crea ogetti di tipo 
-	 * CittaMeteoData.
-	 * Nel caso di 'true' viene richiamato dalla classe FiltraCitta
+	 * viene richiamato da com.progetto.myweather.service.CallApi
+	 * nel caso di 'true' crea ogetti di tipo CittaMeteoData , viene richiamato da com.progetto.myweather.filtri.FiltraCitta
+	 * 
+	 * @param obj 
+	 * @param singolaCitta : identifica quale tipo di classe creare
+	 * 
 	 */
 	
 		public Vector<Citta> parser(JSONObject obj, boolean singolaCitta) {

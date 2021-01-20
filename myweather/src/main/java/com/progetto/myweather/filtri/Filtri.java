@@ -46,8 +46,8 @@ public class Filtri {
 	 * 
 	 * viene usato per il path '/filtraCitta'
 	 */
-	public Vector<Citta> filtraCitta (int periodo, String nomeCitta) throws IOException{
-		return filtraCitta.evidenziaStoricoCitta(periodo, nomeCitta);
+	public Vector<Citta> filtraCitta (int periodo, String nomeCitta, Vector<Citta> cityBox) throws IOException{
+		return filtraCitta.evidenziaStoricoCitta(periodo, nomeCitta, cityBox);
 	}
 	
 	

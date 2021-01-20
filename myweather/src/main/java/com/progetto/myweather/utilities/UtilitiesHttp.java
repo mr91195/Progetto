@@ -9,6 +9,7 @@ import java.util.Vector;
 public class UtilitiesHttp {
 	/*
 	 * restituisce la key per l'API CurrentWeather
+	 * @return ApiKey
 	 */
 	public String getKey () {
 		File file_key = new File ("C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\api-key.txt");
@@ -27,11 +28,14 @@ public class UtilitiesHttp {
 	}
 	/*
 	 * metodo che restituisce un vettore contenente le coordinate relative al box1,box2,box3
-	 * in String FileBox viene passato il percorso del file 'FileBox'
+	 * in String FileBox viene passato il percorso del file 'FileBox.txt'
+	 * 
+	 * @param FileBox : directory del file 'FileBox.txt'
+	 * @return restituisce le stringhe da usare nella RequestAPI CurrentWeather
 	 */
 	public Vector <String> elaboraStringheBox(String FileBox) {
 		
-		Vector <String> arrBox = new Vector <String>();
+		Vector <String> boxStringhe = new Vector <String>();
 		BufferedReader fileReader;
 		String elem;
 		
@@ -39,7 +43,7 @@ public class UtilitiesHttp {
 			fileReader = new BufferedReader(new FileReader(FileBox));
 			
 			while((elem=fileReader.readLine())!=null) {
-				arrBox.add(elem);
+				boxStringhe.add(elem);
 			}
 			fileReader.close();
 			}
@@ -50,12 +54,16 @@ public class UtilitiesHttp {
 				System.out.println("Problema nel try elaboraStringhe_IOException");
 			}
 		
-		return arrBox;
+		return boxStringhe;
 		
 	}
 	/*
-	 *  metodo che confronta il box selezionato dall'utente e restituisce le
-	 *  coordinate del box corrette, da inserire nell'http
+	 *  in base al box selezionato dall'utente restituisce le giuste coordinate da dover usare
+	 *  nella Request ad OpenWeather
+	 *  
+	 *  @param boxStringhe
+	 *  @param box
+	 *  @return box_selezionato: coordinate del box
 	 */
 	public String selezionaBox(Vector<String> boxStringhe, String box) {
 		String box_selezionato="";
