@@ -4,6 +4,14 @@ import java.util.Vector;
 import com.progetto.myweather.model.*;
 
 public class FiltraMaxMin {
+	
+	/*
+	 * metodo che si occupa di fare le statistiche sulle temperature e di restituirle inserite nel vettore
+	 * 
+	 * @param citta : vettore sul quale fare le statitstiche
+	 * @param singolaCitta : se lavora con una singola citta (serve per il downcast)
+	 * @return il vettore popolato anche con l'oggetto CittaTempMin e CittaTempMax
+	 */
 
 	public Vector<Citta> aggiungiMaxMin(Vector <Citta> citta, boolean singolaCitta) {
 		CittaTempMax CTmax = evidenziaMax(citta, singolaCitta);
@@ -13,6 +21,13 @@ public class FiltraMaxMin {
 	    return citta;
 	}
 	
+	/*
+	 * metodo che si occupa di calcolare la citta con la temperatura max
+	 * 
+	 * @param citta: vettore sul quale lavora
+	 * @param singolaCitta : se lavora con una singola citta  o piu
+	 * @return l'oggetto CittaTempMax
+	 */
 	public CittaTempMax evidenziaMax ( Vector <Citta> citta, boolean singolaCitta) {
 		CittaTempMax Tmax = null;
 		Vector<CittaMeteoData> castData = new Vector <CittaMeteoData>();
@@ -56,7 +71,10 @@ public class FiltraMaxMin {
 		}
 	return Tmax;
 }
-	
+	/*
+	 * metodo analogo a evidenziaMax
+	 * 
+	 */
 	public CittaTempMin evidenziaMin(Vector<Citta> citta, boolean singolaCitta) {
 		CittaTempMin Tmin = null;
 		Vector<CittaMeteoData> castData = new Vector <CittaMeteoData>();

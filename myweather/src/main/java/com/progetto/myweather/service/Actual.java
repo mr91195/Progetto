@@ -2,6 +2,8 @@ package com.progetto.myweather.service;
 
 import com.progetto.myweather.exception.CustomException;
 import com.progetto.myweather.model.*;
+import com.progetto.myweather.utilities.Utilities;
+
 import java.util.Vector;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,16 @@ import org.springframework.stereotype.Component;
 public class Actual implements RequestApi{
 	
 	CallApi ca= new CallApi();
+	Utilities utilities = new Utilities();
+	
+	/*
+	 * metodo che si occupa di popolare un vettore di tipo String per stamparle all'utente
+	 * per una piccola spiegazione dei path
+	 * @return stringhe contenti le istruzioni
+	 */
+	public Vector<String> istruction(){
+		return utilities.getHome();
+	}
 	
 	/*
 	 * metodo che restituisce le citta presenti nel box scelto dall'utente

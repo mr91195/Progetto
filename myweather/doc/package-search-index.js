@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.progetto.myweather"},{"l":"com.progetto.myweather.controller"},{"l":"com.progetto.myweather.exception"},{"l":"com.progetto.myweather.filtri"},{"l":"com.progetto.myweather.model"},{"l":"com.progetto.myweather.service"},{"l":"com.progetto.myweather.utilities"}];updateSearchResults();

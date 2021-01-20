@@ -1,0 +1,11 @@
+Rotte e Funzionalità offerte da MyWeatherApplication:
+
+1) /home -> mostra i path che l'utente ha a disposizione
+
+2) /attuale[GET] -> mostra le temperature attuali, mediante il parametro 'Box' (box preimpostati vedi readMe)
+
+3) /attuale/rettangolo[GET] -> mostra le temperature attuali dove l'utente puo scegliere manualmente il box da selezionare
+
+4) /archivioBox[GET] -> l'utente, tramite box e periodo (parametri) restituisce i dati degli archivi
+
+5) /filtraCitta[POST] -> l'utente passando un body della classe CittaFiltro,richiede il numero di giorni degli storici di una singola citta

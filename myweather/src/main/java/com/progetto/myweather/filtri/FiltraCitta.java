@@ -21,6 +21,11 @@ public class FiltraCitta {
 	 * 	Metodo che si occupa di restituire un Vector popolato dalla singola citta richiesta dall'utente
 	 * per il numero di giorni di storico richiesti.
 	 * aggiungendo la tempMax , tempMin e la varianza
+	 * 
+	 * @param periodo : il numero di giorni a ritroso
+	 * @param nomeCitta :  citta che restituisce
+	 * @param cityBox : vettore sul quale cerca la citta richiesta
+	 * @return lo storico di una singola citta 
 	 */
 	public Vector<Citta> evidenziaStoricoCitta( int periodo, String nomeCitta, Vector<Citta> cityBox) throws IOException{
 		

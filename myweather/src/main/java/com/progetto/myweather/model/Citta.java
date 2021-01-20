@@ -3,9 +3,11 @@ package com.progetto.myweather.model;
 public abstract class Citta {
 	public String name;
 	
+	 //costruttore
 	public Citta (String name) {
 		this.name=name;
 	}
+	//costruttore vuoto
 	public Citta() {
 		
 	}

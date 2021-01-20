@@ -5,6 +5,7 @@ import java.util.Vector;
 
 public interface RequestApi {
 	
+	public Vector<String> istruction();
 	
 	public Vector<Citta> meteoActual(String box)throws CustomException;
 	

@@ -1,0 +1,7 @@
+com.progetto.myweather
+com.progetto.myweather.controller
+com.progetto.myweather.exception
+com.progetto.myweather.filtri
+com.progetto.myweather.model
+com.progetto.myweather.service
+com.progetto.myweather.utilities

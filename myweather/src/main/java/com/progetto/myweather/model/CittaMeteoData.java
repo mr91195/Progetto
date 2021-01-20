@@ -1,5 +1,9 @@
 package com.progetto.myweather.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class CittaMeteoData extends Citta{
 	private String data;
 	private double temp_media;
@@ -7,9 +11,9 @@ public class CittaMeteoData extends Citta{
 	private double temp_min;
 	private double escursione;
 	
-	public CittaMeteoData(String name,String data ,double temp_max, double temp_min) {
+	public CittaMeteoData(String name,long data ,double temp_max, double temp_min) {
 		super(name);
-		this.data = data;
+		this.data = generaData(data);
 		this.temp_max = temp_max;
 		this.temp_min = temp_min;
 		this.temp_media = (temp_max + temp_min)/2;
@@ -67,6 +71,13 @@ public class CittaMeteoData extends Citta{
 
 	public void setEscursione(double escursione) {
 		this.escursione = escursione;
+	}
+	
+	private String generaData(long mil) {
+		DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar calendario = Calendar.getInstance();
+		calendario.setTimeInMillis(mil*1000L);
+		return formato.format(calendario.getTime());
 	}
 	
 }

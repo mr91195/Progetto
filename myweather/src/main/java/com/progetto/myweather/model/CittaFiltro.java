@@ -4,11 +4,12 @@ public class CittaFiltro {
 	
 	private String name;
 	private int giorni;
-	
+	//costruttore
 	public CittaFiltro(String name, int giorni) {
 		this.name=name;
 		this.giorni=giorni;
 	}
+	//costruttore
 	public CittaFiltro() {
 		
 	}

@@ -1,7 +1,6 @@
 package com.progetto.myweather.controller;
 
 import com.progetto.myweather.service.Actual;
-
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,10 @@ import com.progetto.myweather.exception.CustomException;
 import com.progetto.myweather.filtri.Filtri;
 import com.progetto.myweather.model.*;
 
-	/*
+	/*@Author Marco Romanelli
+	 * @Author Cristiano Vagnoni
+	 * 
+	 * 
 	 * Controller dell'applicazione, sono presenti i vari Path che puo richiamare l'utente
 	 */
 
@@ -30,13 +32,15 @@ public class SimpleRestController {
 	
 	
 	
+	
 	/*
 	 * Path : /home, mostra i Path che l'utente ha a disposizione
 	 */
 	
 	@RequestMapping("/home")
-	public String home() {
-		return "home";
+	public Vector <String> home() {
+		
+		return chiamata.istruction();
 	}
 	
 	/*
@@ -100,8 +104,8 @@ public class SimpleRestController {
 	 * @param citta : body della classe CittaFiltro ( contiene "name" della citta e "periodo" i giorni da valutare)
 	 * @return le temperature delle citta per i giorni richiesti in piu filtra la singola citta scelta.
 	 */
-	@PostMapping (value = "/filtraCittaBox")
-	public Vector<Citta> prova (@RequestParam (name="box", defaultValue="box1") String box,
+	@PostMapping (value = "/filtraCitta")
+	public Vector<Citta> filtraCittaBox (@RequestParam (name="box", defaultValue="box1") String box,
 								@RequestBody CittaFiltro citta) throws ParseException, IOException {
 		Vector<Citta> cityBox = filtri.filtraggioBoxPeriodo(box, citta.getGiorni());
 		cityBox.addAll(filtri.filtraCitta(citta.getGiorni(),citta.getName(), cityBox));

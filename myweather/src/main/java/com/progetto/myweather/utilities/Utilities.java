@@ -21,7 +21,10 @@ public class Utilities {
 	String docuMin = "C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\cittaBoxMin.txt";
 	
 	/*
+	 * metodo che restituisce i nomi delle citta corrispondenti al box richiesto dall'utente
 	 * 
+	 * @param doc, contiene l'indirizzo del file che puo essere 'cittaBoxMax','cittaBoxMedium','cittaBoxMin'
+	 * @return restituisce i nomi appartenti al box richiesto
 	 */
 	
 	public Vector <String> elaboraFile(String doc) {
@@ -141,7 +144,7 @@ public class Utilities {
 				 JSONObject jo = (JSONObject) a.get(i);
 			
 				 String name = (String) jo.get("name");
-				 String dataUTC = (String) jo.get("dt").toString();
+				 long dataUTC = Long.parseLong(jo.get("dt").toString());
 				 JSONObject main = (JSONObject) jo.get("main");
 				 double temp_min = Double.parseDouble(main.get("temp_min").toString());
 				 double temp_max = Double.parseDouble (main.get("temp_max").toString());
@@ -150,5 +153,32 @@ public class Utilities {
 		}
 		 
 		 return citta;
+		}
+		
+		/*
+		 * metodo che legge un file txt contenente le istruzioni da restituire all'utente
+		 * 
+		 * @return stringhe contenente le istruzioni basi che l'utente puo usare
+		 */
+		
+		public Vector<String> getHome()  {
+			
+			String homeFile="C:\\Users\\MR911\\git\\ProgettoPO\\myweather\\src\\main\\resources\\Archivio\\cittaBox\\home.txt";
+			Vector<String> home= new Vector<String>();    
+			
+			
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(homeFile));
+				
+				do { 
+					home.add(reader.readLine());
+				
+				} while((reader.readLine()) != null); 
+			
+				 reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return home;
 		}
 }

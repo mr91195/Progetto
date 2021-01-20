@@ -23,6 +23,10 @@ public class Filtri {
 	 * Aggiungendo il calcolo della varianza e gli oggetti CittaTempMin e CittaTempMax
 	 * 
 	 * viene usato per il path '/archivioBox'
+	 * 
+	 * @param box : identifica il box selezionato dall'utente
+	 * @param periodo: identifica i giorni a ritroso per i file in locale
+	 * @return il vettore popolato dalle citta richieste con calcolo della varianza e tempMax e tempMin
 	 */
 	public Vector<Citta> filtraggioBoxPeriodo (String box, int periodo) throws ParseException{
 		
@@ -45,6 +49,11 @@ public class Filtri {
 	 * a ritroso da prelevare nello storico
 	 * 
 	 * viene usato per il path '/filtraCitta'
+	 * 
+	 * @param periodo : rapprensenta i giorni degli storici da considerare
+	 * @param nomeCitta : rapprensenta la singola citta richiesta
+	 * @param cityBox : vettore sul quale lavorare
+	 * @return il vettore popolato correttamente
 	 */
 	public Vector<Citta> filtraCitta (int periodo, String nomeCitta, Vector<Citta> cityBox) throws IOException{
 		return filtraCitta.evidenziaStoricoCitta(periodo, nomeCitta, cityBox);
