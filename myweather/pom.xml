@@ -50,7 +50,6 @@
 			<version>5.6.2</version>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -58,7 +57,6 @@
 			<version>5.6.2</version>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
